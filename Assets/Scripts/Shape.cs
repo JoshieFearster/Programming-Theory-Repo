@@ -6,7 +6,20 @@ using UnityEngine;
 public abstract class Shape : MonoBehaviour
 {
     // ENCAPSULATION
-    public Color shapeColor { get; set; }
+    [field: SerializeField]
+    public Color ShapeColor { get; set; }
+
+    private void Awake()
+    {
+        SetColor();
+    }
+
+    private void SetColor()
+    {
+        Renderer mr = GetComponent<Renderer>();
+
+        mr.material.color = ShapeColor;
+    }
 
     // POLYMORPHISM
     protected abstract void DisplayText();
